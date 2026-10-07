@@ -1,0 +1,61 @@
+/*
+  tokens.css — THE place to change the look of the site.
+  Everything else (base.css, components.css) reads these variables and contains
+  no hard-coded colors, fonts or sizes. Bare-bones black & white for now.
+*/
+
+/* ---- Custom fonts ------------------------------------------------------
+   Figma uses Instrument Serif (headings) and Archivo (body/UI).
+   To add them: drop files in assets/fonts/ and uncomment/adapt, e.g.
+
+   @font-face {
+     font-family: "Instrument Serif";
+     src: url("../assets/fonts/InstrumentSerif-Regular.woff2") format("woff2");
+     font-weight: 400; font-style: normal; font-display: swap;
+   }
+   Then change --font-display / --font-body below.
+-------------------------------------------------------------------------- */
+
+:root {
+  /* Fonts (system fallbacks for now) */
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+
+  /* Colors — semantic roles, not literal colors. Swap values to re-theme.
+     Figma palette for reference: brown #3b2a20, cream #fcf6ec, pink #ffcfcd / #fadcda, accent #ffaeab. */
+  --color-text: #000;
+  --color-bg: #fff;
+  --color-surface: #fff;          /* alt section background */
+  --color-surface-muted: #eee;    /* placeholders, practice/classes bands */
+  --color-inverse-bg: #000;       /* contact section */
+  --color-inverse-text: #fff;
+  --color-accent: currentColor;   /* italic highlight words ("flow.") */
+  --color-border: #000;
+  --color-placeholder: #cfcfcf;   /* image slot fill */
+
+  /* Section backgrounds (images). Set e.g. url("../assets/images/practice-bg.jpg") */
+  --practice-bg: none;
+
+  /* Type scale (fluid: min, preferred, max) */
+  --text-eyebrow: 0.8125rem;
+  --text-body: 1.0625rem;
+  --text-lead: clamp(1.0625rem, 1vw + 0.8rem, 1.25rem);
+  --text-heading-md: clamp(1.75rem, 2vw + 1rem, 2.5rem);
+  --text-heading-lg: clamp(2rem, 3vw + 1rem, 3rem);
+  --text-display: clamp(2.5rem, 4vw + 1rem, 4rem);
+  --leading-body: 1.4;
+  --leading-heading: 1.15;
+  --tracking-eyebrow: 0.08em;
+
+  /* Spacing & layout */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 3rem;
+  --gutter: clamp(1.25rem, 5vw, 4rem);   /* page side padding (64px at desktop) */
+  --section-pad: clamp(2rem, 5vw, 3rem);
+  --container-max: 1280px;
+  --radius-pill: 999px;
+  --border-width: 1px;
+  --breakpoint-note: "Layout switches at 800px (see components.css; CSS vars can't be used in media queries).";
+}
