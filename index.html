@@ -7,8 +7,8 @@
       spelling in the hero eyebrow — fix in the Figma/copy pass, not silently here).
     - Section order follows the frame: Nav, Hero, Offerings, Practice (styles),
       Journey, Classes, Contact.
-    - No styling decisions beyond black/white + a type hierarchy. All visual
-      choices live in css/tokens.css. See README.md.
+    - Colors come from the Tate theme (GUI.md); fonts are still placeholders.
+      All visual choices live in css/tokens.css. See README.md.
     - Image slots are marked "IMAGE SLOT" and render as grey placeholders until
       an <img> is dropped in (see assets/images/README.md).
 -->
@@ -24,6 +24,8 @@
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
   <script src="js/main.js" defer></script>
+  <!-- TEMPORARY font comparison; inactive unless the URL has ?fonts=. See README. -->
+  <script src="js/font-trials.js"></script>
 </head>
 <body>
 
@@ -62,7 +64,7 @@
         <header class="section__header">
           <p class="eyebrow eyebrow--wide">Offerings</p>
           <div class="section__header-row">
-            <h2 class="heading-lg">Private sessions, <em>shaped around you</em></h2>
+            <h2 class="heading-lg">Private sessions, <span class="highlight">shaped around you</span></h2>
             <p class="lead">Private sessions can take place at home, outdoors, or online. Every session is built around your body and your goals.</p>
           </div>
         </header>

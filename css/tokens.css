@@ -1,7 +1,8 @@
 /*
   tokens.css — THE place to change the look of the site.
   Everything else (base.css, components.css) reads these variables and contains
-  no hard-coded colors, fonts or sizes. Bare-bones black & white for now.
+  no hard-coded colors, fonts or sizes. Colors use the Tate theme palette;
+  fonts and sizes are still placeholders.
 */
 
 /* ---- Custom fonts ------------------------------------------------------
@@ -20,18 +21,34 @@
   /* Fonts (system fallbacks for now) */
   --font-display: Georgia, "Times New Roman", serif;
   --font-body: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --weight-heading: 400;     /* headers: .display, .heading-lg, nav name */
+  --weight-subheading: 400;  /* subheaders: .heading-md, hero tagline, accordion titles */
 
-  /* Colors — semantic roles, not literal colors. Swap values to re-theme.
-     Figma palette for reference: brown #3b2a20, cream #fcf6ec, pink #ffcfcd / #fadcda, accent #ffaeab. */
-  --color-text: #000;
-  --color-bg: #fff;
-  --color-surface: #fff;          /* alt section background */
-  --color-surface-muted: #eee;    /* placeholders, practice/classes bands */
-  --color-inverse-bg: #000;       /* contact section */
-  --color-inverse-text: #fff;
-  --color-accent: currentColor;   /* italic highlight words ("flow.") */
-  --color-border: #000;
-  --color-placeholder: #cfcfcf;   /* image slot fill */
+  /* Colors — semantic roles. They point at the Tate palette (below) so
+     components never use literal colors. See GUI.md / gui/themes/tate.md. */
+  --color-text: var(--neutral-10);
+  --color-text-muted: var(--neutral-7);     /* accordion index, +/– indicator */
+  --color-text-subtle: var(--neutral-8);    /* accordion body copy */
+  --color-bg: var(--neutral-1);
+  --color-surface: var(--neutral-2);        /* alt section background */
+  --color-surface-muted: var(--color-2);  /* hero info, practice/classes bands */
+  --color-inverse-bg: var(--neutral-9);     /* contact section */
+  --color-inverse-text: var(--neutral-1);
+  --color-inverse-text-muted: var(--neutral-5);
+  --color-accent: var(--color-3);           /* highlight words ("shaped around you") */
+  --color-inverse-accent: var(--color-4);   /* italic highlight on the contact band ("flow.") */
+  --color-border: var(--neutral-4);         /* dividers: accordion rows, style columns */
+  --color-placeholder: var(--neutral-4);    /* image slot fill */
+  --color-input-placeholder: var(--color-text-muted);
+  --color-focus: var(--color-1);
+  /* Buttons (Tate primary / outline variants) */
+  --color-button-primary-bg: var(--color-1);
+  --color-button-primary-text: var(--neutral-1);
+  --color-button-primary-border: var(--color-1-transparent);
+  --color-button-outline-border: var(--neutral-4-transparent);
+  --color-button-outline-hover-bg: var(--neutral-3-transparent);
+  --color-button-disabled-bg: var(--neutral-3);
+  --color-button-disabled-text: var(--neutral-6);
 
   /* Section backgrounds (images). Set e.g. url("../assets/images/practice-bg.jpg") */
   --practice-bg: none;
@@ -54,8 +71,106 @@
   --space-lg: 3rem;
   --gutter: clamp(1.25rem, 5vw, 4rem);   /* page side padding (64px at desktop) */
   --section-pad: clamp(2rem, 5vw, 3rem);
-  --container-max: 1280px;
+  --container-max: 1200px;               /* page width incl. gutters: content tops out at 1072px */
+  /* For full-width sections (background spans the screen) whose content must
+     stay in the page column. Use as side padding; 100% is the section's width. */
+  --page-bleed: max(0px, (100% - var(--container-max)) / 2);   /* space outside the page column */
+  --page-inset: calc(var(--page-bleed) + var(--gutter));       /* ...plus the gutter: lines text up with .container */
   --radius-pill: 999px;
   --border-width: 1px;
   --breakpoint-note: "Layout switches at 800px (see components.css; CSS vars can't be used in media queries).";
+}
+
+/* ---- Tate palette (Graphical theme, colors only) ------------------------
+   Values from gui/themes/tate.md. Light is the site default. Dark is opt-in:
+   add data-theme="dark" to <html>. The semantic roles above follow either mode.
+-------------------------------------------------------------------------- */
+
+:root {
+  color-scheme: light;
+
+  --color-none: transparent;
+  --color-1: #3b2a20;
+  --color-1-transparent: #3b2a2036;
+  --color-2: #f8d3ce;
+  --color-2-transparent: #f8d3ce33;
+  --color-3: #a3474d;
+  --color-3-transparent: #a3474d33;
+  --color-4: #efb0a8;
+  --color-4-transparent: #efb0a833;
+
+  --neutral-1: #fffcf7;
+  --neutral-1-transparent: #fffcf733;
+  --neutral-2: #fcf6ec;
+  --neutral-2-transparent: #fcf6ec33;
+  --neutral-3: #f4eadb;
+  --neutral-3-transparent: #f4eadb33;
+  --neutral-4: #e3d4c1;
+  --neutral-4-transparent: #e3d4c133;
+  --neutral-5: #cdb9a8;
+  --neutral-5-transparent: #cdb9a833;
+  --neutral-6: #ad9584;
+  --neutral-6-transparent: #ad958433;
+  --neutral-7: #8b7363;
+  --neutral-7-transparent: #8b736333;
+  --neutral-8: #6a5345;
+  --neutral-8-transparent: #6a534533;
+  --neutral-9: #3b2a20;
+  --neutral-9-transparent: #3b2a2033;
+  --neutral-10: #2a1d16;
+  --neutral-10-transparent: #2a1d1633;
+
+  --success: #4f6b45;
+  --success-transparent: #4f6b4533;
+  --warning: #9a6418;
+  --warning-transparent: #9a641833;
+  --error: #a8322d;
+  --error-transparent: #a8322d33;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-1: #eda8a2;
+  --color-1-transparent: #eda8a233;
+  --color-2: #ffc5ce;
+  --color-2-transparent: #ffc5ce33;
+  --color-3: #153d85;
+  --color-3-transparent: #153d8533;
+  --color-4: #ffd7ad;
+  --color-4-transparent: #ffd7ad33;
+
+  --neutral-1: #000000;
+  --neutral-1-transparent: #00000033;
+  --neutral-2: #242016;
+  --neutral-2-transparent: #24201633;
+  --neutral-3: #2f2b21;
+  --neutral-3-transparent: #2f2b2133;
+  --neutral-4: #413d33;
+  --neutral-4-transparent: #413d3333;
+  --neutral-5: #5b564b;
+  --neutral-5-transparent: #5b564b33;
+  --neutral-6: #888377;
+  --neutral-6-transparent: #88837733;
+  --neutral-7: #b0ab9f;
+  --neutral-7-transparent: #b0ab9f33;
+  --neutral-8: #d4cfc3;
+  --neutral-8-transparent: #d4cfc333;
+  --neutral-9: #f5f4f1;
+  --neutral-9-transparent: #f5f4f133;
+  --neutral-10: #ffffff;
+  --neutral-10-transparent: #ffffff33;
+
+  --success: #00906c;
+  --success-transparent: #00906c33;
+  --warning: #ffea00;
+  --warning-transparent: #ffea0033;
+  --error: #fc032d;
+  --error-transparent: #fc032d33;
+
+  /* Dark color-3 is blue in this theme, so dark mode uses the pink color-1
+     for highlight words on the black canvas. */
+  --color-accent: var(--color-1);
+  /* No palette color reads on the light inverse band in dark mode. */
+  --color-inverse-accent: currentColor;
 }

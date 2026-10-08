@@ -6,7 +6,7 @@ Design source: Figma `TateMartinelli2026` → mid-fi → **Home 1** (node `49:11
 
 ## Status
 
-Bare-bones first pass: all copy from Home 1, in Figma order, black & white, responsive. Fonts, colors and images are intentionally **not** styled yet — they're set up to be dropped in.
+Bare-bones first pass: all copy from Home 1, in Figma order, responsive. Colors use the **Tate** Graphical theme (see `GUI.md`, values in `gui/themes/tate.md`). Fonts and images are intentionally **not** styled yet — they're set up to be dropped in.
 
 ## Structure
 
@@ -23,7 +23,9 @@ assets/images/        images (see its README for how to fill image slots)
 ## How to customize
 
 - **Fonts** — add files to `assets/fonts/`, add `@font-face` and change `--font-display` / `--font-body` in `tokens.css`. (Figma: Instrument Serif + Archivo.)
-- **Colors** — change the semantic `--color-*` variables in `tokens.css`. Figma palette is listed in a comment there.
+- **Trying fonts** — open `index.html?fonts=figma` (or `timeless`, or any pairing you add) and use the picker in the bottom-right corner. Pairings live in `css/font-trials.css` + `js/font-trials.js`; normal visitors never load them. Once you pick one, copy its two font values and any `@font-face` into `tokens.css`, then delete both trial files and the `font-trials.js` `<script>` tag.
+- **Adding font files** — use `.woff2` (convert `.otf`/`.ttf` with a converter such as transfonter.org if that's all you have). One file per weight/style, named `Family-Weight.woff2` (e.g. `TimelessGrotesk-Medium.woff2`), in `assets/fonts/`, alongside the font's license file. The `timeless` trial expects `TimelessGrotesk-Medium.woff2` (500) and `TimelessGrotesk-SemiBold.woff2` (600).
+- **Colors** — semantic roles (`--color-text`, `--color-accent`, …) in `tokens.css` point at the Tate palette (`--color-1..4`, `--neutral-1..10`). Re-point a role to change one use; change the palette to re-theme. Dark mode is opt-in: `<html data-theme="dark">`.
 - **Images** — see `assets/images/README.md`.
 - **Type sizes / spacing** — `tokens.css`; sizes use `clamp()` so they scale between mobile and desktop.
 

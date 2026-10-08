@@ -1,0 +1,198 @@
+/*
+  font-trials.css — TEMPORARY. Loaded only by js/font-trials.js when the URL has
+  ?fonts=<pairing>. Body text is Inter for every pairing; each pairing sets the heading font.
+  To add a pairing: add a block here and an entry in PAIRINGS in js/font-trials.js.
+  When a pairing is chosen, move its values into tokens.css and delete this file.
+*/
+
+/* Theme font: needs files in assets/fonts/ with exactly these names (see README). */
+@font-face {
+  font-family: "Timeless Grotesk";
+  src: url("../assets/fonts/TimelessGrotesk-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Timeless Grotesk";
+  src: url("../assets/fonts/TimelessGrotesk-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tanker";
+  src: url("../assets/fonts/Tanker-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Variable fonts: one file covers a weight range (the range must match the file). */
+@font-face {
+  font-family: "Cabinet Grotesk";
+  src: url("../assets/fonts/CabinetGrotesk-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Chillax";
+  src: url("../assets/fonts/Chillax-Variable.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Quilon";
+  src: url("../assets/fonts/Quilon-Variable.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Alpino";
+  src: url("../assets/fonts/Alpino-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bespoke Serif";
+  src: url("../assets/fonts/BespokeSerif-Variable.woff2") format("woff2");
+  font-weight: 300 800;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Display";
+  src: url("../assets/fonts/ClashDisplay-Variable.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Clash Grotesk";
+  src: url("../assets/fonts/ClashGrotesk-Variable.woff2") format("woff2");
+  font-weight: 200 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Ranade";
+  src: url("../assets/fonts/Ranade-Variable.woff2") format("woff2");
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi";
+  src: url("../assets/fonts/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Zodiak";
+  src: url("../assets/fonts/Zodiak-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Body font for every pairing (loaded via SHARED_GOOGLE in js/font-trials.js).
+   Pairings below only set the heading font. */
+html[data-fonts] {
+  --font-body: "Inter", system-ui, sans-serif;
+}
+html[data-fonts="fredoka"] {
+  --font-display: "Fredoka", system-ui, sans-serif;
+  --weight-heading: 600;
+  ---weight-subheading: 400;
+}
+html[data-fonts="tanker"] {
+  --font-display: "Tanker", system-ui, sans-serif;
+}
+/* Headers 500, subheaders 400 (tokens: --weight-heading / --weight-subheading). */
+html[data-fonts="cabinet"] {
+  --font-display: "Cabinet Grotesk", system-ui, sans-serif;
+  --weight-heading: 600;
+  --weight-subheading: 400;
+}
+html[data-fonts="chillax"] {
+  --font-display: "Chillax", system-ui, sans-serif;
+  --weight-heading: 600;
+  --weight-subheading: 500;
+}
+html[data-fonts="quilon"] {
+  --font-display: "Quilon", system-ui, sans-serif;
+  --weight-heading: 500;
+  --weight-subheading: 400;
+}
+html[data-fonts="alpino"] {
+  --font-display: "Alpino", system-ui, sans-serif;
+  --weight-heading: 600;
+  --weight-subheading: 500;
+}
+html[data-fonts="shrikhand"] {
+  --font-display: "Shrikhand", system-ui, serif;
+  --weight-heading: 400;
+  --weight-subheading: 400;
+}
+html[data-fonts="bespoke"] {
+  --font-display: "Bespoke Serif", Georgia, serif;
+  --weight-heading: 600;
+  --weight-subheading: 400;
+}
+html[data-fonts="clash-display"] {
+  --font-display: "Clash Display", system-ui, sans-serif;
+  --weight-heading: 600;
+  --weight-subheading: 400;
+}
+html[data-fonts="clash-grotesk"] {
+  --font-display: "Clash Grotesk", system-ui, sans-serif;
+  --weight-heading: 600;
+  --weight-subheading: 400;
+}
+html[data-fonts="ranade"] {
+  --font-display: "Ranade", system-ui, sans-serif;
+  --weight-heading: 600;
+  --weight-subheading: 400;
+}
+html[data-fonts="satoshi"] {
+  --font-display: "Satoshi", system-ui, sans-serif;
+  --weight-heading: 700;
+  --weight-subheading: 400;
+}
+html[data-fonts="zodiak"] {
+  --font-display: "Zodiak", Georgia, serif;
+  --weight-heading: 600;
+  --weight-subheading: 500;
+}
+/* Lilita One only has weight 400; other values would show 400 or a fake bold. */
+html[data-fonts="lilita"] {
+  --font-display: "Lilita One", system-ui, sans-serif;
+  --weight-heading: 400;
+  --weight-subheading: 400;
+}
+html[data-fonts="rubik"] {
+  --font-display: "Rubik", system-ui, sans-serif;
+  --weight-heading: 500;
+  --weight-subheading: 400;
+}
+
+/* Picker (trial UI only) */
+.font-trials {
+  position: fixed;
+  right: var(--space-sm);
+  bottom: var(--space-sm);
+  z-index: 100;
+  max-width: calc(100% - 2 * var(--space-sm));
+  padding: var(--space-xs) var(--space-sm);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font: 0.875rem/1.2 system-ui, sans-serif;
+}

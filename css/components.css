@@ -35,21 +35,30 @@
   align-items: center;
   justify-content: center;
   padding: 1rem 1.25rem;
-  border: var(--border-width) solid var(--color-text);
+  border: var(--border-width) solid transparent;
   border-radius: var(--radius-pill);
   font: inherit;
   font-size: var(--text-eyebrow);
   text-transform: uppercase;
   cursor: pointer;
 }
-.button--solid { background: var(--color-text); color: var(--color-bg); }
-.button--outline { background: transparent; color: var(--color-text); }
-.button--small { padding: 0.75rem 1rem; }
-.section--contact .button--solid {
-  background: var(--color-inverse-text);
-  color: var(--color-inverse-bg);
-  border-color: var(--color-inverse-text);
+.button--solid {
+  background: var(--color-button-primary-bg);
+  color: var(--color-button-primary-text);
+  border-color: var(--color-button-primary-border);
 }
+.button--outline {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--color-button-outline-border);
+}
+.button--outline:hover { background: var(--color-button-outline-hover-bg); }
+.button:disabled {
+  background: var(--color-button-disabled-bg);
+  color: var(--color-button-disabled-text);
+  cursor: not-allowed;
+}
+.button--small { padding: 0.75rem 1rem; }
 
 /* ---- Nav ---- */
 
@@ -59,26 +68,32 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-sm);
-  padding: var(--space-sm) var(--gutter);
+  padding: var(--space-sm) var(--page-inset);
   background: var(--color-bg);
 }
-.nav__name { font-family: var(--font-display); font-size: 1.25rem; }
+.nav__name { font-family: var(--font-display); font-weight: var(--weight-heading); font-size: 1.25rem; }
 .nav__links { display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; }
 
 /* ---- Hero ---- */
 
-.hero { display: flex; flex-direction: column; }
+/* Band color spans the screen; image + text stay in the page column. */
+.hero {
+  display: flex;
+  flex-direction: column;
+  padding-inline: var(--page-bleed);
+  background: var(--color-surface-muted);
+}
 .hero__media { aspect-ratio: 522 / 430; width: 100%; }
 .hero__info {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
   padding: var(--section-pad) var(--gutter);
-  background: var(--color-surface-muted);
   justify-content: center;
 }
 .hero__tagline {
   font-family: var(--font-display);
+  font-weight: var(--weight-subheading);
   font-size: var(--text-heading-md);
   line-height: var(--leading-heading);
 }
@@ -104,8 +119,10 @@
   text-align: left;
   cursor: pointer;
 }
-.accordion__title { flex: 1; font-family: var(--font-display); font-size: var(--text-heading-md); }
+.accordion__index { color: var(--color-text-muted); }
+.accordion__title { flex: 1; font-family: var(--font-display); font-weight: var(--weight-subheading); font-size: var(--text-heading-md); }
 /* +/– indicator driven by aria-expanded so there is one source of truth */
+.accordion__icon { color: var(--color-text-muted); }
 .accordion__icon::before { content: "+"; font-size: 2rem; }
 .accordion__trigger[aria-expanded="true"] .accordion__icon::before { content: "–"; }
 
@@ -114,6 +131,7 @@
   flex-direction: column;
   gap: var(--space-md);
   padding: 0 var(--space-sm) var(--space-md);
+  color: var(--color-text-subtle);
 }
 .accordion__panel[hidden] { display: none; }
 .accordion__panel > .body { max-width: 36rem; }
@@ -138,7 +156,7 @@
 
 /* ---- Journey (image + text) ---- */
 
-.split { display: flex; flex-direction: column; }
+.split { display: flex; flex-direction: column; padding-inline: var(--page-bleed); }
 .split__media { aspect-ratio: 478 / 532; width: 100%; }
 .split__content {
   display: flex;
@@ -156,7 +174,17 @@
 
 /* ---- Contact ---- */
 
-.section--contact { background: var(--color-inverse-bg); color: var(--color-inverse-text); }
+/* Inverse band: remap roles locally so the shared components stay readable on it. */
+.section--contact {
+  background: var(--color-inverse-bg);
+  color: var(--color-inverse-text);
+  --color-accent: var(--color-inverse-accent);
+  --color-focus: var(--color-inverse-text);
+  --color-input-placeholder: var(--color-inverse-text-muted);
+  --color-button-primary-bg: var(--color-inverse-text);
+  --color-button-primary-text: var(--color-inverse-bg);
+  --color-button-primary-border: var(--color-inverse-text);
+}
 
 .form { display: flex; flex-direction: column; gap: var(--space-xs); width: 100%; padding: var(--space-md) 0; align-items: flex-start; }
 .field {
@@ -176,7 +204,7 @@
   resize: vertical;
 }
 .field input::placeholder,
-.field textarea::placeholder { color: var(--color-placeholder); }
+.field textarea::placeholder { color: var(--color-input-placeholder); opacity: 1; }
 .field input:focus-visible,
 .field textarea:focus-visible { outline-offset: 4px; }
 
