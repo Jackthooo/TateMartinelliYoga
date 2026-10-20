@@ -45,7 +45,7 @@
   --color-button-primary-bg: var(--color-1);
   --color-button-primary-text: var(--neutral-1);
   --color-button-primary-border: var(--color-1-transparent);
-  --color-button-outline-border: var(--neutral-4-transparent);
+  --color-button-outline-border: var(--color-1);
   --color-button-outline-hover-bg: var(--neutral-3-transparent);
   --color-button-disabled-bg: var(--neutral-3);
   --color-button-disabled-text: var(--neutral-6);

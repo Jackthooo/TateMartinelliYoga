@@ -76,14 +76,18 @@
 
 /* ---- Hero ---- */
 
-/* Band color spans the screen; image + text stay in the page column. */
+/* Band color spans the screen. The image bleeds to the left screen edge;
+   the text stays in the page column (right inset only). */
 .hero {
   display: flex;
   flex-direction: column;
-  padding-inline: var(--page-bleed);
+  padding-inline: 0 var(--page-bleed);
   background: var(--color-surface-muted);
 }
-.hero__media { aspect-ratio: 522 / 430; width: 100%; }
+/* Photo is 3:2 (1668x1114). Stacked: shown uncropped. Side by side: it fills the
+   column height and crops the sides, centered on the figure. */
+.hero__media { aspect-ratio: 1668 / 1114; width: 100%; }
+.hero__media img { object-position: 55% 50%; }
 .hero__info {
   display: flex;
   flex-direction: column;
@@ -156,8 +160,11 @@
 
 /* ---- Journey (image + text) ---- */
 
-.split { display: flex; flex-direction: column; padding-inline: var(--page-bleed); }
+/* Image bleeds to the left screen edge; text stays in the page column (right inset only). */
+.split { display: flex; flex-direction: column; padding-inline: 0 var(--page-bleed); }
 .split__media { aspect-ratio: 478 / 532; width: 100%; }
+/* Photo is 3:2 landscape in a portrait slot: sides are cropped, shifted right to keep her face. */
+.split__media img { object-position: 92% 50%; }
 .split__content {
   display: flex;
   flex-direction: column;
@@ -220,7 +227,11 @@
 
   .columns--3 { grid-template-columns: repeat(3, 1fr); }
 
-  .split { flex-direction: row; align-items: center; }
-  .split__media { width: 37%; aspect-ratio: 478 / 532; flex-shrink: 0; }
+  .split { flex-direction: row; align-items: stretch; }
+  /* Photo fills the section height (set by the text + its padding); the img is
+     taken out of flow so its own size never stretches the section. The min-height
+     floor keeps her face in view if the copy gets short. */
+  .split__media { position: relative; width: 45%; min-height: 28rem; aspect-ratio: auto; flex-shrink: 0; }
+  .split__media img { position: absolute; inset: 0; }
   .split__content { flex: 1; }
 }
