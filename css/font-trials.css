@@ -1,6 +1,6 @@
 /*
   font-trials.css — TEMPORARY. Loaded only by js/font-trials.js when the URL has
-  ?fonts=<pairing>. Body text is Inter for every pairing; each pairing sets the heading font.
+  ?fonts=<pairing>. Body text is Work Sans for every pairing; each pairing sets the heading font.
   To add a pairing: add a block here and an entry in PAIRINGS in js/font-trials.js.
   When a pairing is chosen, move its values into tokens.css and delete this file.
 */
@@ -10,39 +10,23 @@
 /* Body font for every pairing (loaded via SHARED_GOOGLE in js/font-trials.js).
    Pairings below only set the heading font. */
 html[data-fonts] {
-  --font-body: "Inter", system-ui, sans-serif;
+  --font-body: "Work Sans", system-ui, sans-serif;
 }
-/* These display fonts only ship a regular (400) weight, so both heading weights are 400. */
+/* These display fonts only ship a regular (400) weight, so the heading weight is 400.
+   Subheadings use Work Sans (see --font-subheading in tokens.css) and keep their own weight. */
 html[data-fonts="ultra"] {
   --font-display: "Ultra", Georgia, serif;
   --weight-heading: 400;
-  --weight-subheading: 400;
 }
 html[data-fonts="bevan"] {
   --font-display: "Bevan", Georgia, serif;
   --weight-heading: 400;
-  --weight-subheading: 400;
 }
 html[data-fonts="alfa-slab-one"] {
   --font-display: "Alfa Slab One", Georgia, serif;
   --weight-heading: 400;
-  --weight-subheading: 400;
 }
-html[data-fonts="chonburi"] {
-  --font-display: "Chonburi", Georgia, serif;
-  --weight-heading: 400;
-  --weight-subheading: 400;
-}
-html[data-fonts="kavoon"] {
-  --font-display: "Kavoon", Georgia, serif;
-  --weight-heading: 400;
-  --weight-subheading: 400;
-}
-html[data-fonts="abril-fatface"] {
-  --font-display: "Abril Fatface", Georgia, serif;
-  --weight-heading: 400;
-  --weight-subheading: 400;
-}
+
 /* Picker (trial UI only) */
 .font-trials {
   position: fixed;

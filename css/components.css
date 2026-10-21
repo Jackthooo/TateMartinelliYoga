@@ -71,7 +71,7 @@
   padding: var(--space-sm) var(--page-inset);
   background: var(--color-bg);
 }
-.nav__name { font-family: var(--font-display); font-weight: var(--weight-heading); font-size: 1.25rem; }
+.nav__name { font-family: var(--font-display); font-weight: var(--weight-heading); font-size: var(--step-1); }
 .nav__links { display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; }
 
 /* ---- Hero ---- */
@@ -96,9 +96,10 @@
   justify-content: center;
 }
 .hero__tagline {
-  font-family: var(--font-display);
+  font-family: var(--font-subheading);
   font-weight: var(--weight-subheading);
   font-size: var(--text-heading-md);
+  letter-spacing: var(--tracking-subheading);
   line-height: var(--leading-heading);
 }
 
@@ -124,7 +125,7 @@
   cursor: pointer;
 }
 .accordion__index { color: var(--color-text-muted); }
-.accordion__title { flex: 1; font-family: var(--font-display); font-weight: var(--weight-subheading); font-size: var(--text-heading-md); }
+.accordion__title { flex: 1; font-family: var(--font-subheading); font-weight: var(--weight-subheading); font-size: var(--text-heading-md); letter-spacing: var(--tracking-subheading); }
 /* +/– indicator driven by aria-expanded so there is one source of truth */
 .accordion__icon { color: var(--color-text-muted); }
 .accordion__icon::before { content: "+"; font-size: 2rem; }
@@ -147,7 +148,8 @@
   background-color: var(--color-surface-muted);
   background-image: var(--practice-bg);
   background-size: cover;
-  background-position: bottom;
+  background-position: var(--practice-bg-position);
+  color: var(--color-inverse-text);   /* light text over the sunset; this section only */
 }
 .columns { display: grid; gap: var(--space-lg); width: 100%; margin-top: var(--space-md); }
 .column {

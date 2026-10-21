@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-20 — Client review build
+- Practice section sunset background image; Work Sans body/subheadings; display font picker trimmed to Ultra, Bevan and Alfa Slab One (`?fonts=`).
+
 ## 2026-10-08 — Tate theme colors
 - Installed the Tate Graphical theme guidance: `GUI.md`, `gui/`, and the graphical-ui / graphical-convert / graphical-audit skills in `.agents/skills/`. Added `CLAUDE.md` pointing to them.
 - Applied the theme's colors only: Tate light/dark palette in `tokens.css`, semantic roles remapped onto it, buttons (primary, outline + hover, disabled), accordion, dividers, focus ring and contact form recolored. Dark mode is opt-in via `data-theme="dark"`.

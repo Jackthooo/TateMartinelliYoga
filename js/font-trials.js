@@ -4,34 +4,22 @@
 // To remove: delete this file, its <script> tag in index.html, and css/font-trials.css.
 (() => {
   // Body font shared by every pairing (set in css/font-trials.css), loaded for all.
-  const SHARED_GOOGLE = ['Inter:wght@400;600'];
+  const SHARED_GOOGLE = ['Work+Sans:wght@400..600'];
 
   // Each pairing picks a heading font. `google` = Google Fonts "family=" values
   // for that heading font; leave it [] for uploaded fonts (declared in css/font-trials.css).
   const PAIRINGS = {
     ultra: {
-      label: 'Ultra + Inter',
+      label: 'Ultra + Work Sans',
       google: ['Ultra'],   // single weight (400)
     },
     bevan: {
-      label: 'Bevan + Inter',
+      label: 'Bevan + Work Sans',
       google: ['Bevan'],   // single weight (400)
     },
     'alfa-slab-one': {
-      label: 'Alfa Slab One + Inter',
+      label: 'Alfa Slab One + Work Sans',
       google: ['Alfa+Slab+One'],   // single weight (400)
-    },
-    chonburi: {
-      label: 'Chonburi + Inter',
-      google: ['Chonburi'],   // single weight (400)
-    },
-    kavoon: {
-      label: 'Kavoon + Inter',
-      google: ['Kavoon'],   // single weight (400)
-    },
-    'abril-fatface': {
-      label: 'Abril Fatface + Inter',
-      google: ['Abril+Fatface'],   // single weight (400)
     },
   };
 

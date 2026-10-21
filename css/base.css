@@ -32,10 +32,10 @@ a { color: inherit; text-decoration: none; }
 }
 .display    { font-size: var(--text-display); }
 .heading-lg { font-size: var(--text-heading-lg); }
-.heading-md { font-size: var(--text-heading-md); font-weight: var(--weight-subheading); }
+.heading-md { font-family: var(--font-subheading); font-size: var(--text-heading-md); font-weight: var(--weight-subheading); letter-spacing: var(--tracking-subheading); }
 
 em { font-style: italic; color: var(--color-accent); }
-.highlight { color: var(--color-accent); }   /* accent color without italics */
+.highlight { color: var(--color-accent); }   
 
 .body { font-size: var(--text-body); }
 .lead { font-size: var(--text-lead); }

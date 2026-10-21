@@ -20,13 +20,15 @@
 :root {
   /* Fonts (system fallbacks for now) */
   --font-display: Georgia, "Times New Roman", serif;
-  --font-body: system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  /* Subheadings: .heading-md (style names), hero tagline, accordion titles. */
+  --font-subheading: "Work Sans", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Work Sans", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;   /* weight 400 */
   --weight-heading: 400;     /* headers: .display, .heading-lg, nav name */
-  --weight-subheading: 400;  /* subheaders: .heading-md, hero tagline, accordion titles */
+  --weight-subheading: 500;  /* subheaders (Work Sans is variable: any 400-600 works) */
 
   /* Colors — semantic roles. They point at the Tate palette (below) so
      components never use literal colors. See GUI.md / gui/themes/tate.md. */
-  --color-text: var(--neutral-10);
+  --color-text: var(--neutral-9);
   --color-text-muted: var(--neutral-7);     /* accordion index, +/– indicator */
   --color-text-subtle: var(--neutral-8);    /* accordion body copy */
   --color-bg: var(--neutral-1);
@@ -50,19 +52,34 @@
   --color-button-disabled-bg: var(--neutral-3);
   --color-button-disabled-text: var(--neutral-6);
 
-  /* Section backgrounds (images). Set e.g. url("../assets/images/practice-bg.jpg") */
-  --practice-bg: none;
+  /* Section backgrounds (images). Paths resolve from this css file. */
+  --practice-bg: url("../assets/images/sunset.jpeg");
+  --practice-bg-position: 50% 50%;   /* crop focus; the photo is pre-cropped to sky, so center is fine */
 
-  /* Type scale (fluid: min, preferred, max) */
-  --text-eyebrow: 0.8125rem;
-  --text-body: 1.0625rem;
-  --text-lead: clamp(1.0625rem, 1vw + 0.8rem, 1.25rem);
-  --text-heading-md: clamp(1.75rem, 2vw + 1rem, 2.5rem);
-  --text-heading-lg: clamp(2rem, 3vw + 1rem, 3rem);
-  --text-display: clamp(2.5rem, 4vw + 1rem, 4rem);
+  /* Type scale: Minor Third (ratio 1.2), base 17px (the body size).
+     step-n = 17px x 1.2^n. Sizes below are rem (px / 16). */
+  --step--1: 0.8854rem;   /* 14.2px */
+  --step-0: 1.0625rem;    /* 17px   base */
+  --step-1: 1.275rem;     /* 20.4px */
+  --step-2: 1.53rem;      /* 24.5px */
+  --step-3: 1.836rem;     /* 29.4px */
+  --step-4: 2.2032rem;    /* 35.3px */
+  --step-5: 2.6438rem;    /* 42.3px */
+  --step-6: 3.1726rem;    /* 50.8px */
+  --step-7: 3.8071rem;    /* 60.9px */
+
+  /* Roles. Headings are fluid: they sit two steps down on small screens (400px
+     wide and under) and reach their full step at 1200px, scaling linearly between. */
+  --text-eyebrow: var(--step--1);
+  --text-body: var(--step-0);
+  --text-lead: clamp(var(--step-0), 0.9563rem + 0.425vw, var(--step-1));              /* steps 0 -> 1 */
+  --text-heading-md: clamp(var(--step-3), 1.4321rem + 1.6156vw, var(--step-5));       /* steps 3 -> 5 */
+  --text-heading-lg: clamp(var(--step-4), 1.7185rem + 1.9388vw, var(--step-6));       /* steps 4 -> 6 */
+  --text-display: clamp(var(--step-5), 2.0622rem + 2.3265vw, var(--step-7));          /* steps 5 -> 7 */
   --leading-body: 1.4;
   --leading-heading: 1.15;
   --tracking-eyebrow: 0.08em;
+  --tracking-subheading: -0.02em;   /* tighter tracking for Work Sans subheadings */
 
   /* Spacing & layout */
   --space-xs: 0.5rem;
