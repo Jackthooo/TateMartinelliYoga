@@ -1,101 +1,86 @@
 /*
   tokens.css — THE place to change the look of the site.
   Everything else (base.css, components.css) reads these variables and contains
-  no hard-coded colors, fonts or sizes. Colors use the Tate theme palette;
-  fonts and sizes are still placeholders.
+  no hard-coded colors, fonts or sizes. Values come from Figma
+  "TateMartinelli2026" > Home v4 (Desktop), node 219:139.
 */
 
-/* ---- Custom fonts ------------------------------------------------------
-   Figma uses Instrument Serif (headings) and Archivo (body/UI).
-   To add them: drop files in assets/fonts/ and uncomment/adapt, e.g.
-
-   @font-face {
-     font-family: "Instrument Serif";
-     src: url("../assets/fonts/InstrumentSerif-Regular.woff2") format("woff2");
-     font-weight: 400; font-style: normal; font-display: swap;
-   }
-   Then change --font-display / --font-body below.
--------------------------------------------------------------------------- */
+/* Fonts: Fraunces (headings, SOFT 100 / WONK 0) + Figtree (body/UI), loaded
+   from Google Fonts in index.html. */
 
 :root {
-  /* Fonts (system fallbacks for now) */
-  --font-display: Georgia, "Times New Roman", serif;
-  /* Subheadings: .heading-md (style names), hero tagline, accordion titles. */
-  --font-subheading: "Work Sans", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
-  --font-body: "Work Sans", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;   /* weight 400 */
-  --weight-heading: 400;     /* headers: .display, .heading-lg, nav name */
-  --weight-subheading: 500;  /* subheaders (Work Sans is variable: any 400-600 works) */
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+  --font-body: "Figtree", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --font-display-settings: "SOFT" 100, "WONK" 0;
+  --weight-heading: 600;   /* Fraunces SemiBold: wordmark, display, subheading */
+  --weight-regular: 400;
+  --weight-label: 500;     /* Figtree Medium: nav, buttons, field labels */
 
-  /* Colors — semantic roles. They point at the Tate palette (below) so
-     components never use literal colors. See GUI.md / gui/themes/tate.md. */
-  --color-text: var(--neutral-9);
-  --color-text-muted: var(--neutral-7);     /* accordion index, +/– indicator */
-  --color-text-subtle: var(--neutral-8);    /* accordion body copy */
-  --color-bg: var(--neutral-1);
-  --color-surface: var(--neutral-2);        /* alt section background */
-  --color-surface-muted: var(--color-2);  /* hero info, practice/classes bands */
-  --color-inverse-bg: var(--neutral-9);     /* contact section */
-  --color-inverse-text: var(--neutral-1);
-  --color-inverse-text-muted: var(--neutral-5);
-  --color-accent: var(--color-3);           /* highlight words ("shaped around you") */
-  --color-inverse-accent: var(--color-4);   /* italic highlight on the contact band ("flow.") */
-  --color-border: var(--neutral-4);         /* dividers: accordion rows, style columns */
-  --color-placeholder: var(--neutral-4);    /* image slot fill */
-  --color-input-placeholder: var(--color-text-muted);
-  --color-focus: var(--color-1);
-  /* Buttons (Tate primary / outline variants) */
-  --color-button-primary-bg: var(--color-1);
-  --color-button-primary-text: var(--neutral-1);
-  --color-button-primary-border: var(--color-1-transparent);
-  --color-button-outline-border: var(--color-1);
-  --color-button-outline-hover-bg: var(--neutral-3-transparent);
-  --color-button-disabled-bg: var(--neutral-3);
-  --color-button-disabled-text: var(--neutral-6);
+  /* Figma palette (named as in the file) */
+  --brand-50: #fcf5f1;     /* color-1/50  page background, text on dark */
+  --brand-200: #e5d6cd;    /* color-1/200 dividers on light */
+  --brand-800: #544035;    /* color-1/800 body copy */
+  --brand-900: #3b2a20;    /* color-1/900 headings, dark sections */
+  --blush-100: #fee5e1;    /* color-2/100 About band */
+  --rose-200: #fecaca;     /* color-3/200 headings on dark */
+  --rose-300: #f9adae;     /* color-3/300 primary button */
+  --rose-500: #cc7074;     /* color-3/500 highlight words on light */
 
-  /* Section backgrounds (images). Paths resolve from this css file. */
-  --practice-bg: url("../assets/images/sunset.jpeg");
-  --practice-bg-position: 50% 50%;   /* crop focus; the photo is pre-cropped to sky, so center is fine */
+  /* Colors: semantic roles */
+  --color-text: var(--brand-900);
+  --color-text-subtle: var(--brand-800);
+  --color-bg: var(--brand-50);
+  --color-surface: var(--blush-100);
+  --color-inverse-bg: var(--brand-900);
+  --color-inverse-text: var(--brand-50);
+  --color-inverse-heading: var(--rose-200);
+  --color-accent: var(--rose-500);
+  --color-border: var(--brand-200);
+  --color-border-inverse: var(--brand-50);
+  --color-placeholder: var(--brand-200);
+  --color-input-placeholder: var(--brand-50);
+  --color-focus: var(--brand-900);
+  /* Buttons: pink on photos/dark, brown on light surfaces */
+  --color-button-pink-bg: var(--rose-300);
+  --color-button-pink-text: var(--brand-900);
+  --color-button-brown-bg: var(--brand-900);
+  --color-button-brown-text: var(--brand-50);
 
-  /* Type scale: Minor Third (ratio 1.2), base 17px (the body size).
-     step-n = 17px x 1.2^n. Sizes below are rem (px / 16). */
-  --step--1: 0.8854rem;   /* 14.2px */
-  --step-0: 1.0625rem;    /* 17px   base */
-  --step-1: 1.275rem;     /* 20.4px */
-  --step-2: 1.53rem;      /* 24.5px */
-  --step-3: 1.836rem;     /* 29.4px */
-  --step-4: 2.2032rem;    /* 35.3px */
-  --step-5: 2.6438rem;    /* 42.3px */
-  --step-6: 3.1726rem;    /* 50.8px */
-  --step-7: 3.8071rem;    /* 60.9px */
+  /* Image overlays (brown #3b2a20 at varying alpha) */
+  --overlay-hero-vertical: linear-gradient(180deg, rgba(59, 42, 32, 0.45) 0%, rgba(59, 42, 32, 0) 18%, rgba(59, 42, 32, 0) 50%, rgba(59, 42, 32, 0.85) 100%);
+  --overlay-hero-right: linear-gradient(90deg, rgba(59, 42, 32, 0) 40%, rgba(59, 42, 32, 0.35) 62%, rgba(59, 42, 32, 0.7) 100%);
+  --overlay-styles: linear-gradient(180deg, rgba(59, 42, 32, 0) 0%, rgba(59, 42, 32, 0.15) 35%, rgba(59, 42, 32, 0.78) 70%, rgba(59, 42, 32, 0.92) 100%);
 
-  /* Roles. Headings are fluid: they sit two steps down on small screens (400px
-     wide and under) and reach their full step at 1200px, scaling linearly between. */
-  --text-eyebrow: var(--step--1);
-  --text-body: var(--step-0);
-  --text-lead: clamp(var(--step-0), 0.9563rem + 0.425vw, var(--step-1));              /* steps 0 -> 1 */
-  --text-heading-md: clamp(var(--step-3), 1.4321rem + 1.6156vw, var(--step-5));       /* steps 3 -> 5 */
-  --text-heading-lg: clamp(var(--step-4), 1.7185rem + 1.9388vw, var(--step-6));       /* steps 4 -> 6 */
-  --text-display: clamp(var(--step-5), 2.0622rem + 2.3265vw, var(--step-7));          /* steps 5 -> 7 */
-  --leading-body: 1.4;
-  --leading-heading: 1.15;
-  --tracking-eyebrow: 0.08em;
-  --tracking-subheading: -0.02em;   /* tighter tracking for Work Sans subheadings */
+  /* Type scale (Figma text styles); sizes fluid down to mobile */
+  --text-wordmark: clamp(1.25rem, 1.1rem + 0.5vw, 1.625rem);               /* 26 */
+  --text-label: 0.875rem;                                                  /* 14: nav, buttons, field labels */
+  --text-display: clamp(2.5rem, 1.9rem + 2.4vw, 4rem);                     /* 64 */
+  --text-subheading: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);                  /* 32 */
+  --text-body-lg: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);                 /* 28 offerings intro */
+  --text-lead-lg: clamp(1.125rem, 1.05rem + 0.3vw, 1.375rem);              /* 22 */
+  --text-lead: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);                   /* 20 */
+  --text-body: 1.125rem;                                                   /* 18 */
+  --text-body-sm: 1.0625rem;                                               /* 17 */
+  --text-meta: 1.125rem;                                                   /* 18 Fraunces */
+  --leading-display: 1.08;
+  --leading-lead: 1.5;
+  --leading-body: 1.6;
+  --tracking-label: 0.08em;        /* 1.12px at 14px */
+  --tracking-field-label: 0.04em;  /* 0.56px at 14px */
 
   /* Spacing & layout */
-  --space-xs: 0.5rem;
-  --space-sm: 1rem;
-  --space-md: 1.5rem;
-  --space-lg: 3rem;
-  --gutter: clamp(1.25rem, 5vw, 4rem);   /* page side padding (64px at desktop) */
-  --section-pad: clamp(2rem, 5vw, 3rem);
-  --container-max: 1200px;               /* page width incl. gutters: content tops out at 1072px */
-  /* For full-width sections (background spans the screen) whose content must
-     stay in the page column. Use as side padding; 100% is the section's width. */
-  --page-bleed: max(0px, (100% - var(--container-max)) / 2);   /* space outside the page column */
-  --page-inset: calc(var(--page-bleed) + var(--gutter));       /* ...plus the gutter: lines text up with .container */
+  --space-xs: 0.75rem;
+  --space-sm: 1.5rem;
+  --space-md: 2.5rem;
+  --space-lg: 3.5rem;
+  --gutter: clamp(1.25rem, 8.33vw, 7.5rem);   /* page side padding (120px at 1440) */
+  --section-pad-y: clamp(4rem, 8vw, 7.5rem);
+  --container-max: 1440px;
+  --page-bleed: max(0px, (100% - var(--container-max)) / 2);
+  --page-inset: calc(var(--page-bleed) + var(--gutter));
   --radius-pill: 999px;
   --border-width: 1px;
-  --breakpoint-note: "Layout switches at 800px (see components.css; CSS vars can't be used in media queries).";
+  --breakpoint-note: "Layout switches at 900px (see components.css; CSS vars can't be used in media queries).";
 }
 
 /* ---- Tate palette (Graphical theme, colors only) ------------------------

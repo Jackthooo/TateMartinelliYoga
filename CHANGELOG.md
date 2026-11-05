@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-05 — Home v4 design
+- Rebuilt the page from Figma node 219:139: Fraunces + Figtree, Figma palette and text styles as tokens, nav merged into the hero, static offering rows (accordion removed), public classes as closing row of Offerings, yoga-styles section on IMG_0270 with gradient overlay, About and Contact restyled.
+- Hero photo is Pose1 with vertical + right gradient overlays. Converted IMG_0270.heic to JPEG. Removed font trials and `js/main.js`.
+
 ## 2026-10-20 — Client review build
 - Practice section sunset background image; Work Sans body/subheadings; display font picker trimmed to Ultra, Bevan and Alfa Slab One (`?fonts=`).
 

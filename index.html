@@ -1,16 +1,9 @@
 <!doctype html>
 <!--
-  Tate Martinelli Yoga — Home page (bare-bones build)
-  Source: Figma "TateMartinelli2026" > mid-fi > "Home 1" (node 49:11).
-  Rules for this build:
-    - Copy is taken verbatim from the Figma frame (including the "SAN FRANCISO"
-      spelling in the hero eyebrow — fix in the Figma/copy pass, not silently here).
-    - Section order follows the frame: Nav, Hero, Offerings, Practice (styles),
-      Journey, Classes, Contact.
-    - Colors come from the Tate theme (GUI.md); fonts are still placeholders.
-      All visual choices live in css/tokens.css. See README.md.
-    - Image slots are marked "IMAGE SLOT" and render as grey placeholders until
-      an <img> is dropped in (see assets/images/README.md).
+  Tate Martinelli Yoga — Home page
+  Source: Figma "TateMartinelli2026" > "Home v4 (Desktop) — public classes as closing row" (node 219:139).
+  Section order: Hero (with nav), Offerings (+ public classes), Yoga styles, About, Contact.
+  All visual values live in css/tokens.css. See README.md.
 -->
 <html lang="en">
 <head>
@@ -19,191 +12,144 @@
   <title>Tate Martinelli</title>
   <meta name="description" content="Tate Martinelli — yoga instructor, San Francisco, CA.">
 
-  <!-- Work Sans (variable, weights 400-600): body at 400, subheadings at 500. -->
+  <!-- Fraunces (headings; SOFT/WONK axes) + Figtree (body/UI) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400..600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500&family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..600,0..100,0&display=swap">
 
   <!-- Order matters: tokens (design values) -> base (reset/type) -> components (layout). -->
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
-  <script src="js/main.js" defer></script>
-  <!-- TEMPORARY font comparison; inactive unless the URL has ?fonts=. See README. -->
-  <script src="js/font-trials.js"></script>
 </head>
 <body>
 
-  <!-- ===== NAV (Figma 49:12) ===== -->
-  <header class="nav">
-    <a class="nav__name" href="#top">Tate Martinelli</a>
-    <nav class="nav__links" aria-label="Primary">
-      <a class="eyebrow" href="#offerings">Offerings</a>
-      <a class="eyebrow" href="#classes">Classes</a>
-      <a class="eyebrow" href="#about">About</a>
-      <a class="button button--solid button--small" href="#contact">Book</a>
-    </nav>
-  </header>
-
   <main id="top">
 
-    <!-- ===== HERO (Figma 49:20) ===== -->
+    <!-- ===== HERO + NAV (Figma 219:140) ===== -->
     <section class="hero">
-      <div class="media hero__media" data-image-slot="hero">
-        <img src="assets/images/DSC_1582.jpeg" width="1668" height="1114" alt="Tate in a triangle pose at sunset on a lakeside dock">
+      <div class="backdrop">
+        <img src="assets/images/Pose1.jpeg" width="1668" height="1114" alt="Tate in a standing side-bend silhouetted against a lakeside sunset">
       </div>
-      <div class="hero__info">
-        <p class="eyebrow eyebrow--wide">YOGA INSTRUCTOR • SAN FRANCISO, CA</p>
-        <h1 class="display">Tate Martinelli</h1>
-        <p class="hero__tagline">Make yoga work for you, not the other way around.</p>
-        <p class="body">Come into your body and book private sessions to help further your yoga practice on and off the mat.</p>
-        <div class="button-row">
-          <a class="button button--solid" href="#contact">Book a session</a>
-          <a class="button button--outline" href="#classes">See classes</a>
-        </div>
+      <div class="hero__shade"></div>
+
+      <header class="nav">
+        <a class="wordmark" href="#top">Tate Martinelli</a>
+        <nav class="nav__links" aria-label="Primary">
+          <a class="label nav__text-link" href="#offerings">Offerings</a>
+          <a class="label nav__text-link" href="#classes">Classes</a>
+          <a class="label nav__text-link" href="#about">About</a>
+          <a class="button button--pink button--small" href="#contact">Book</a>
+        </nav>
+      </header>
+
+      <div class="hero__promise">
+        <h1 class="display">Let yoga work for you, not the other way around.</h1>
+        <p class="lead">Come into your body and book private sessions to help further your practice on and off the mat.</p>
+        <a class="button button--pink" href="#contact">Book a private session</a>
       </div>
+
+      <p class="hero__meta meta">Tate Martinelli • Yoga Instructor • San Francisco, CA</p>
     </section>
 
-    <!-- ===== OFFERINGS (Figma 50:106) ===== -->
-    <section class="section" id="offerings">
-      <div class="container">
-        <header class="section__header">
-          <p class="eyebrow eyebrow--wide">Offerings</p>
-          <div class="section__header-row">
-            <h2 class="heading-lg">Private sessions, <span class="highlight">shaped around you</span></h2>
-            <p class="lead">At home, outdoors, or online. Every session is built around your body and your goals.</p>
-          </div>
-        </header>
+    <!-- ===== OFFERINGS (Figma 219:156) ===== -->
+    <section class="section offerings" id="offerings">
+      <div class="offerings__split">
+        <div class="offerings__intro">
+          <h2 class="display">Private sessions, <span class="highlight">shaped around you</span></h2>
+          <p class="body-lg">At home, outdoors, or online. Every session is built around your body and your goals.</p>
+        </div>
 
-        <!--
-          Accordion: js/main.js toggles aria-expanded on .accordion__trigger and the
-          [hidden] attribute on its panel. All three items start open, matching the
-          Expanded variant of the Offering Item component in Figma. Group Sessions
-          uses that variant's default copy until Tate supplies its own.
-        -->
-        <ul class="accordion">
-          <li class="accordion__item">
-            <button class="accordion__trigger" type="button" aria-expanded="true" aria-controls="offering-1">
-              <span class="accordion__index">01</span>
-              <span class="accordion__title">1:1 Sessions</span>
-              <span class="accordion__icon" aria-hidden="true"></span>
-            </button>
-            <div class="accordion__panel" id="offering-1">
-              <p class="body">Includes offerings like pose alignment, guided meditation, and breathwork, curated to protect any injuries or sensitivities.</p>
-              <div class="accordion__meta">
-                <p class="eyebrow eyebrow--wide">60 min • in-home or virtual</p>
-                <a class="eyebrow eyebrow--wide link" href="#contact">Ask about this →</a>
-              </div>
-            </div>
+        <ul class="offering-list">
+          <li class="offering">
+            <h3 class="subheading">1:1 Sessions</h3>
+            <p class="body">Includes offerings like pose alignment, guided meditation, and breathwork, curated to protect any injuries or sensitivities.</p>
           </li>
-
-          <li class="accordion__item">
-            <button class="accordion__trigger" type="button" aria-expanded="true" aria-controls="offering-2">
-              <span class="accordion__index">02</span>
-              <span class="accordion__title">Group Sessions</span>
-              <span class="accordion__icon" aria-hidden="true"></span>
-            </button>
-            <div class="accordion__panel" id="offering-2">
-              <p class="body">Birthday parties, work events, sports teams, and more. Gather your people to enjoy the gift of wellness together.</p>
-              <div class="accordion__meta">
-                <p class="eyebrow eyebrow--wide">60 min • in-home or virtual</p>
-                <a class="eyebrow eyebrow--wide link" href="#contact">Ask about this →</a>
-              </div>
-            </div>
+          <li class="offering">
+            <h3 class="subheading">Group Sessions</h3>
+            <p class="body">Birthday parties, work events, sports teams, and more. Gather your people to enjoy the gift of wellness together.</p>
           </li>
-
-          <li class="accordion__item">
-            <button class="accordion__trigger" type="button" aria-expanded="true" aria-controls="offering-3">
-              <span class="accordion__index">03</span>
-              <span class="accordion__title">Yoga Basics</span>
-              <span class="accordion__icon" aria-hidden="true"></span>
-            </button>
-            <div class="accordion__panel" id="offering-3">
-              <p class="body">Learn the origins of yoga and key poses intimately to build more knowledge and confidence for the next class you step into.</p>
-              <div class="accordion__meta">
-                <p class="eyebrow eyebrow--wide">60 • in-home or virtual</p>
-                <a class="eyebrow eyebrow--wide link" href="#contact">Ask about this →</a>
-              </div>
-            </div>
+          <li class="offering">
+            <h3 class="subheading">Yoga Basics</h3>
+            <p class="body">Learn the origins of yoga and key poses intimately to build more knowledge and confidence for the next class you step into.</p>
           </li>
         </ul>
       </div>
-    </section>
 
-    <!-- ===== PRACTICE / YOGA STYLES (Figma 52:270) ===== -->
-    <!-- Background image slot: set --practice-bg in tokens.css (Figma used a sunset-gradient image). -->
-    <section class="section section--practice" id="practice">
-      <div class="container">
-        <header class="section__header">
-          <p class="eyebrow eyebrow--wide">Practice</p>
-          <h2 class="display">My Yoga Styles</h2>
-        </header>
-        <p class="body">I received my YTT 200 Hour Training in Hot Power Yoga, and teach 3 styles:</p>
-        <div class="columns columns--3">
-          <article class="column">
-            <h3 class="heading-md">Power Yoga</h3>
-            <p class="body">A highly physically demanding practice that challenges you to build internal heat in external heat. Expect fast-paced movements, finding your edge, plenty of sweat, and plenty of endorphins released!</p>
-          </article>
-          <article class="column">
-            <h3 class="heading-md">Vinyasa</h3>
-            <p class="body">A fluid practice where breath guides movement from one pose to the next. A moving meditation demanding high mental focus and endurance.</p>
-          </article>
-          <article class="column">
-            <h3 class="heading-md">Yin</h3>
-            <p class="body">A slower-paced, restorative practice. Yin is mainly practiced with floor poses.</p>
-          </article>
+      <!-- Public classes: closing row of Offerings (Figma 219:166) -->
+      <div class="public" id="classes">
+        <div class="public__copy">
+          <h3 class="subheading">Public Classes</h3>
+          <p class="body-sm">I also teach public classes at the Mill Valley Community Center. Click to see my current class schedule on their website.</p>
         </div>
+        <a class="button button--brown" href="https://www.cityofmillvalley.gov/296/Fitness-Classes">View class schedule →</a>
       </div>
     </section>
 
-    <!-- ===== MY JOURNEY / ABOUT (Figma 54:325) ===== -->
-    <section class="split" id="about">
-      <div class="media split__media" data-image-slot="journey">
+    <!-- ===== YOGA STYLES (Figma 219:171) ===== -->
+    <section class="section styles" id="practice">
+      <div class="backdrop">
+        <img src="assets/images/IMG_0270.jpeg" width="2048" height="1536" alt="">
+      </div>
+      <header class="styles__header">
+        <h2 class="display">My Yoga Styles</h2>
+        <p class="lead-lg">I received my YTT 200 Hour Training in Hot Power Yoga, and teach 3 styles:</p>
+      </header>
+      <div class="styles__list">
+        <article class="style-item">
+          <h3 class="subheading">Power Yoga</h3>
+          <p class="body-sm">A highly physically demanding practice that challenges you to build internal heat in external heat. Expect fast-paced movements, finding your edge, plenty of sweat, and plenty of endorphins released!</p>
+        </article>
+        <article class="style-item">
+          <h3 class="subheading">Vinyasa</h3>
+          <p class="body-sm">A fluid practice where breath guides movement from one pose to the next. A moving meditation demanding high mental focus and endurance.</p>
+        </article>
+        <article class="style-item">
+          <h3 class="subheading">Yin</h3>
+          <p class="body-sm">A slower-paced, restorative practice. Yin is mainly practiced with floor poses.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT (Figma 219:180) ===== -->
+    <section class="about" id="about">
+      <div class="media about__media">
         <img src="assets/images/TateHeadshot.jpeg" width="1668" height="1114" alt="Portrait of Tate smiling, seated on a lakeside dock at sunset">
       </div>
-      <div class="split__content">
-        <p class="eyebrow eyebrow--wide">My Journey</p>
-        <h2 class="heading-lg">From student to teacher</h2>
+      <div class="about__story">
+        <h2 class="display">From student to teacher</h2>
         <p class="body">Hi, I'm Tate! I'm from Northern California, and I've been practicing yoga for six years. When I first started taking yoga classes, I was frustrated trying to master the poses. Once I got stronger at performing poses, I realized the real “work” was needed internally. This is because yoga forces you to become an audience member to your own mind.</p>
         <p class="body">As a teacher and forever student, I now practice and preach being gentle and disciplined at the same time. Yoga is about meeting discomfort without immediately trying to escape it. I teach yoga because I get to work alongside others who are discovering their moments of peace, and be the one to deliver that peace through my classes. I work to create a space that honors the fact that our bodies our shifting everyday, a space where we can show up as we are and simply do our best.</p>
       </div>
     </section>
 
-    <!-- ===== CLASSES (Figma 65:18) ===== -->
-    <section class="section section--classes" id="classes">
-      <div class="container">
-        <p class="eyebrow eyebrow--wide">Classes</p>
-        <h2 class="display">Mill Valley Community Center</h2>
-        <a class="eyebrow eyebrow--wide link" href="https://www.cityofmillvalley.gov/296/Fitness-Classes">Check Availability</a>
+    <!-- ===== CONTACT (Figma 219:187) ===== -->
+    <section class="section contact" id="contact">
+      <div class="contact__intro">
+        <h2 class="display">Let’s flow</h2>
+        <p class="lead">Planning a private session, an event, or just have a question? Send me a note and I’ll get back to you by email.</p>
+        <div class="contact__links">
+          <p class="body">Email: <a href="mailto:yoginitate@gmail.com">yoginitate@gmail.com</a></p>
+          <p class="body">Instagram: <a href="https://instagram.com/yoginitate">@yoginitate</a></p>
+        </div>
       </div>
-    </section>
 
-    <!-- ===== CONTACT (Figma 65:39) ===== -->
-    <section class="section section--contact" id="contact">
-      <div class="container">
-        <p class="eyebrow eyebrow--wide">Get in touch</p>
-        <h2 class="display">Let’s <em>flow.</em></h2>
-        <p class="body">Planning a private session, an event, or just have a question? Send me a note and I’ll get back to you by email.</p>
-        <p class="body">Email: <a class="link" href="mailto:yoginitate@gmail.com">yoginitate@gmail.com</a></p>
-        <p class="body">Instagram: <a class="link" href="https://instagram.com/yoginitate">@yoginitate</a></p>
-
-        <!-- TODO: no backend yet. Wire `action` to a form service (Formspree, Netlify Forms, etc.). -->
-        <form class="form" action="#" method="post">
-          <div class="field">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name">
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="example@email.com" autocomplete="email">
-          </div>
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea id="message" name="message" rows="3" placeholder="What are you looking for?"></textarea>
-          </div>
-          <button class="button button--solid" type="submit">Send to tate →</button>
-        </form>
-      </div>
+      <!-- TODO: no backend yet. Wire `action` to a form service (Formspree, Netlify Forms, etc.). -->
+      <form class="form" action="#" method="post">
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="example@email.com" autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="3" placeholder="What are you looking for?"></textarea>
+        </div>
+        <button class="button button--pink" type="submit">Send to Tate →</button>
+      </form>
     </section>
 
   </main>
