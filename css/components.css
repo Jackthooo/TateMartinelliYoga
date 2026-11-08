@@ -44,12 +44,13 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 54rem;                 /* 868px at desktop */
+  min-height: 100vh;                 /* exactly one viewport; grows only if content needs more */
+  min-height: 100svh;
   color: var(--color-inverse-text);
   overflow: hidden;
 }
 .hero .backdrop { --overlay: var(--overlay-hero-vertical); }
-.hero .backdrop img { object-position: 50% 100%; }
+.hero .backdrop img { object-position: 50% 100%; max-height: 100vw;}
 /* second (right-hand) gradient so the headline reads over the photo */
 .hero__shade { position: absolute; inset: 0; background: var(--overlay-hero-right); pointer-events: none; }
 
