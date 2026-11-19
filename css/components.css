@@ -14,7 +14,7 @@
 
 /* Full-bleed background image + gradient overlay (hero, yoga styles) */
 .backdrop { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
-.backdrop img { width: 100%; height: 100%; object-fit: cover; }
+.backdrop img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .backdrop::after { content: ""; position: absolute; inset: 0; background: var(--overlay); }
 
 /* ---- Buttons ---- */
@@ -50,35 +50,64 @@
   overflow: hidden;
 }
 .hero .backdrop { --overlay: var(--overlay-hero-vertical); }
-.hero .backdrop img { object-position: 50% 100%; max-height: 100vw;}
+.hero .backdrop img { object-position: 32% 0; }   /* mobile crop: keeps the figure in frame at phone aspect ratios */
 /* second (right-hand) gradient so the headline reads over the photo */
 .hero__shade { position: absolute; inset: 0; background: var(--overlay-hero-right); pointer-events: none; }
 
 .nav {
   position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-sm);
-  padding: 2rem var(--page-inset) 1.5rem;
+  padding: 1.5rem var(--page-inset) 1rem;
 }
-.nav__links { display: flex; align-items: center; gap: var(--space-sm); }
-.nav__text-link { display: none; }
 
+/* Mobile: links live in a dropdown opened by the hamburger */
+.nav__toggle {
+  display: inline-flex;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+}
+.nav__toggle path { transform-box: fill-box; transform-origin: center; transition: transform 200ms ease-out, opacity 200ms ease-out; }
+.nav__toggle[aria-expanded="true"] .nav__toggle-top { transform: translateY(6px) rotate(45deg); }
+.nav__toggle[aria-expanded="true"] .nav__toggle-mid { opacity: 0; }
+.nav__toggle[aria-expanded="true"] .nav__toggle-bot { transform: translateY(-6px) rotate(-45deg); }
+
+.nav__links {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--page-inset) var(--space-md);
+  background: var(--color-inverse-bg);
+}
+.nav__links.is-open { display: flex; }
+.nav__links .nav__text-link { display: inline-block; }
+
+.hero__promise .button { width: 100%; }
 .hero__promise {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-sm);
+  gap: 0.75rem;
   margin-top: auto;
-  padding: 4rem var(--page-inset) 3rem;
+  padding: 4rem var(--page-inset) 1rem;
 }
 
 .hero__meta {
   position: relative;
   margin: 0 var(--page-inset);
-  padding: 1.5rem 0 2rem;
+  padding: 0.5rem 0;
   border-top: var(--border-width) solid var(--color-border-inverse);
 }
 
@@ -168,6 +197,10 @@
 .contact__links a { text-decoration: underline; text-underline-offset: 0.2em; }
 
 .form { display: flex; flex-direction: column; gap: 2.25rem; align-items: flex-start; }
+.form__trap { position: absolute; left: -9999px; }   /* spam trap: bots tick it, people never see it */
+.form__status:empty { display: none; }
+.button:disabled { opacity: 0.6; cursor: default; }
+
 .field {
   display: flex;
   flex-direction: column;
@@ -202,15 +235,33 @@
 
 /* ---- Tablet+ (>= 600px) ---- */
 
+@media (max-width: 599px) {
+  .button { font-size: 0.75rem; }
+}
+
 @media (min-width: 600px) {
-  .nav__text-link { display: inline; }
-  .nav__links { gap: 2.5rem; }
+  .nav { padding: 2rem var(--page-inset) 1.5rem; }
+  .nav__toggle { display: none; }
+  .nav__links {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    align-items: center;
+    gap: 2.5rem;
+    padding: 0;
+    background: none;
+  }
+  .hero__promise .button { width: auto; }
+  .hero__meta { padding: 1.5rem 0 2rem; }
+  .hero__promise { gap: var(--space-sm); padding-bottom: 3rem; }
 }
 
 /* ---- Desktop (>= 900px) ---- */
 
 @media (min-width: 900px) {
   /* Headline block sits in the right half (starts at 800px of 1440) */
+  .lead, .lead-lg { line-height: 1.5; }
+  .hero .backdrop img { object-position: 50% 100%; }
   .hero__promise {
     flex: 1;
     justify-content: center;

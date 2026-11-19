@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-19 — Mobile, nav hover, contact form
+- Mobile hero from the Figma Mobile frame: hamburger menu (`js/nav.js`), 36px display, full-width CTA, 16px side padding, hero photo crop. Fixed the hero photo not filling its height on mobile (a `max-height: 100vw` cap).
+- Hero meta line is now Figtree Regular (20px desktop, 14px mobile). All "body small" text now uses Body Relaxed (18px).
+- Nav links get the Figma hover underline (250ms in, 200ms out).
+- Contact form posts to Web3Forms via `js/contact.js` (currently a test access key; swap in Tate's).
+
 ## 2026-11-05 — Home v4 design
 - Rebuilt the page from Figma node 219:139: Fraunces + Figtree, Figma palette and text styles as tokens, nav merged into the hero, static offering rows (accordion removed), public classes as closing row of Offerings, yoga-styles section on IMG_0270 with gradient overlay, About and Contact restyled.
 - Hero photo is Pose1 with vertical + right gradient overlays. Converted IMG_0270.heic to JPEG. Removed font trials and `js/main.js`.

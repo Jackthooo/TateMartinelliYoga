@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
+  <script src="js/contact.js" defer></script>
+  <script src="js/nav.js" defer></script>
 </head>
 <body>
 
@@ -35,7 +37,14 @@
 
       <header class="nav">
         <a class="wordmark" href="#top">Tate Martinelli</a>
-        <nav class="nav__links" aria-label="Primary">
+        <button class="nav__toggle" type="button" aria-label="Menu" aria-expanded="false" aria-controls="site-menu">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+            <path class="nav__toggle-top" d="M3 8h22"/>
+            <path class="nav__toggle-mid" d="M3 14h22"/>
+            <path class="nav__toggle-bot" d="M3 20h22"/>
+          </svg>
+        </button>
+        <nav class="nav__links" id="site-menu" aria-label="Primary">
           <a class="label nav__text-link" href="#offerings">Offerings</a>
           <a class="label nav__text-link" href="#classes">Classes</a>
           <a class="label nav__text-link" href="#about">About</a>
@@ -80,7 +89,7 @@
       <div class="public" id="classes">
         <div class="public__copy">
           <h3 class="subheading">Public Classes</h3>
-          <p class="body-sm">I also teach public classes at the Mill Valley Community Center. Click to see my current class schedule on their website.</p>
+          <p class="body">I also teach public classes at the Mill Valley Community Center. Click to see my current class schedule on their website.</p>
         </div>
         <a class="button button--brown" href="https://www.cityofmillvalley.gov/296/Fitness-Classes">View class schedule →</a>
       </div>
@@ -98,15 +107,15 @@
       <div class="styles__list">
         <article class="style-item">
           <h3 class="subheading">Power Yoga</h3>
-          <p class="body-sm">A highly physically demanding practice that challenges you to build internal heat in external heat. Expect fast-paced movements, finding your edge, plenty of sweat, and plenty of endorphins released!</p>
+          <p class="body">A highly physically demanding practice that challenges you to build internal heat in external heat. Expect fast-paced movements, finding your edge, plenty of sweat, and plenty of endorphins released!</p>
         </article>
         <article class="style-item">
           <h3 class="subheading">Vinyasa</h3>
-          <p class="body-sm">A fluid practice where breath guides movement from one pose to the next. A moving meditation demanding high mental focus and endurance.</p>
+          <p class="body">A fluid practice where breath guides movement from one pose to the next. A moving meditation demanding high mental focus and endurance.</p>
         </article>
         <article class="style-item">
           <h3 class="subheading">Yin</h3>
-          <p class="body-sm">A slower-paced, restorative practice. Yin is mainly practiced with floor poses.</p>
+          <p class="body">A slower-paced, restorative practice. Yin is mainly practiced with floor poses.</p>
         </article>
       </div>
     </section>
@@ -134,8 +143,12 @@
         </div>
       </div>
 
-      <!-- TODO: no backend yet. Wire `action` to a form service (Formspree, Netlify Forms, etc.). -->
-      <form class="form" action="#" method="post">
+      <!-- Web3Forms: emails submissions to the address the access key was created with. js/contact.js sends it without a page reload. -->
+      <form class="form" action="https://api.web3forms.com/submit" method="post">
+        <input type="hidden" name="access_key" value="b5f1040a-bc10-41ce-9343-ac2b65a7a150">
+        <input type="hidden" name="subject" value="New message from tatemartinelli website">
+        <input type="hidden" name="from_name" value="Tate Martinelli website">
+        <input type="checkbox" name="botcheck" class="form__trap" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="field">
           <label for="name">Name</label>
           <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name">
@@ -149,6 +162,7 @@
           <textarea id="message" name="message" rows="3" placeholder="What are you looking for?"></textarea>
         </div>
         <button class="button button--pink" type="submit">Send to Tate →</button>
+        <p class="form__status body" role="status" aria-live="polite"></p>
       </form>
     </section>
 
