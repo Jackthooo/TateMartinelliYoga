@@ -54,15 +54,15 @@
   /* Type scale (Figma text styles); sizes fluid down to mobile */
   --text-wordmark: clamp(1.25rem, 1.1rem + 0.5vw, 1.625rem);               /* 26 */
   --text-label: 0.875rem;                                                  /* 14: nav, buttons, field labels */
-  --text-display: clamp(2.25rem, 1.65rem + 2.4vw, 4rem);                     /* 64 */
+  --text-display: clamp(2.5rem, 1.9rem + 2.4vw, 4rem);                     /* 64 */
   --text-subheading: clamp(1.5rem, 1.3rem + 0.8vw, 2rem);                  /* 32 */
   --text-body-lg: clamp(1.25rem, 1.1rem + 0.6vw, 1.75rem);                 /* 28 offerings intro */
   --text-lead-lg: clamp(1.125rem, 1.05rem + 0.3vw, 1.375rem);              /* 22 */
-  --text-lead: clamp(1.125rem, 1.05rem + 0.2vw, 1.25rem);                   /* 20 */
+  --text-lead: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);                   /* 20 */
   --text-body: 1.125rem;                                                   /* 18 */
-  --text-meta: clamp(0.875rem, 0.7rem + 0.6vw, 1.25rem);                   /* 14 mobile, 20 desktop (Figtree) */
+  --text-meta: clamp(1rem, 0.7rem + 0.6vw, 1.25rem);                       /* 16 mobile, 20 desktop (Figtree) */
   --leading-display: 1.08;
-  --leading-lead: 1.4;           /* mobile; 1.5 from 900px (components.css) */
+  --leading-lead: 1.5;
   --leading-body: 1.6;
   --tracking-label: 0.08em;        /* 1.12px at 14px */
   --tracking-field-label: 0.04em;  /* 0.56px at 14px */
@@ -85,10 +85,6 @@
   --radius-pill: 999px;
   --border-width: 1px;
   --breakpoint-note: "Layout switches at 900px (see components.css; CSS vars can't be used in media queries).";
-}
-
-@media (max-width: 599px) {
-  :root { --gutter: 1rem; }   /* Figma mobile side padding */
 }
 
 /* ---- Tate palette (Graphical theme, colors only) ------------------------

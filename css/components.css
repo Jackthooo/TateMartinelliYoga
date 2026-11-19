@@ -61,8 +61,10 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-sm);
-  padding: 1.5rem var(--page-inset) 1rem;
+  padding: 2rem var(--page-inset) 1.5rem;
 }
+/* Open mobile menu: the nav bar takes the menu colour so the panel reaches the top of the screen */
+.nav.is-open { background: var(--color-inverse-bg); }
 
 /* Mobile: links live in a dropdown opened by the hamburger */
 .nav__toggle {
@@ -93,21 +95,21 @@
 .nav__links.is-open { display: flex; }
 .nav__links .nav__text-link { display: inline-block; }
 
-.hero__promise .button { width: 100%; }
 .hero__promise {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.75rem;
+  gap: var(--space-sm);
   margin-top: auto;
-  padding: 4rem var(--page-inset) 1rem;
+  padding: 4rem var(--page-inset) 3rem;
 }
 
 .hero__meta {
   position: relative;
   margin: 0 var(--page-inset);
-  padding: 0.5rem 0;
+  padding: 1rem 0 1.25rem;
+  text-align: center;
   border-top: var(--border-width) solid var(--color-border-inverse);
 }
 
@@ -235,12 +237,39 @@
 
 /* ---- Tablet+ (>= 600px) ---- */
 
+/* Mobile menu: Book is a plain link (same look as the other items), not a button */
 @media (max-width: 599px) {
-  .button { font-size: 0.75rem; }
+  .nav__links .button {
+    position: relative;
+    padding: 0.375rem 0;
+    background: none;
+    color: inherit;
+    line-height: 1.2;
+    border-radius: 0;
+  }
+  .nav__links .button::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1px;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--duration-underline-out) var(--ease-underline);
+  }
+  .nav__links .button:focus-visible::after { transform: scaleX(1); transition-duration: var(--duration-underline-in); }
+}
+@media (max-width: 599px) and (hover: hover) {
+  .nav__links .button:hover::after { transform: scaleX(1); transition-duration: var(--duration-underline-in); }
+}
+@media (max-width: 599px) and (prefers-reduced-motion: reduce) {
+  .nav__links .button::after { transition: none; }
 }
 
 @media (min-width: 600px) {
-  .nav { padding: 2rem var(--page-inset) 1.5rem; }
+  .nav.is-open { background: none; }
   .nav__toggle { display: none; }
   .nav__links {
     display: flex;
@@ -251,9 +280,7 @@
     padding: 0;
     background: none;
   }
-  .hero__promise .button { width: auto; }
-  .hero__meta { padding: 1.5rem 0 2rem; }
-  .hero__promise { gap: var(--space-sm); padding-bottom: 3rem; }
+  .hero__meta { padding: 1.5rem 0 2rem; text-align: left; }
 }
 
 /* ---- Desktop (>= 900px) ---- */

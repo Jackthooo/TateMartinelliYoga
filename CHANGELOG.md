@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-19 — Mobile menu and hero refinements
+- Mobile menu panel now reaches the top of the screen; Book is a plain link inside it (still a button on desktop).
+- Hero meta line is larger and centered on mobile, with more padding; hero button text is back to 14px. Reverted unrequested Figma mobile sizing (headline, intro text, gutters, full-width button).
+
 ## 2026-11-19 — Mobile, nav hover, contact form
 - Mobile hero from the Figma Mobile frame: hamburger menu (`js/nav.js`), 36px display, full-width CTA, 16px side padding, hero photo crop. Fixed the hero photo not filling its height on mobile (a `max-height: 100vw` cap).
 - Hero meta line is now Figtree Regular (20px desktop, 14px mobile). All "body small" text now uses Body Relaxed (18px).

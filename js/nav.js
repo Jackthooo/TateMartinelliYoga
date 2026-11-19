@@ -1,12 +1,14 @@
 // nav.js — mobile menu. Markup contract: button.nav__toggle[aria-controls=<menu id>]
-// toggles .is-open on the menu; closes on link click, Escape, or outside click.
+// toggles .is-open on the menu and the nav bar; closes on link click, Escape, or outside click.
 const toggle = document.querySelector('.nav__toggle');
+const nav = toggle && toggle.closest('.nav');
 const menu = toggle && document.getElementById(toggle.getAttribute('aria-controls'));
 
-if (toggle && menu) {
+if (toggle && menu && nav) {
   const setOpen = (open) => {
     toggle.setAttribute('aria-expanded', String(open));
     menu.classList.toggle('is-open', open);
+    nav.classList.toggle('is-open', open);
   };
 
   toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
